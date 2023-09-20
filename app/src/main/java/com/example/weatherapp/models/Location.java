@@ -11,6 +11,7 @@ public class Location {
         this.country = country;
     }
 
-    public String getName() { return getName(); }
-    public String getRegion() { return getRegion(); }
+    public String getName() { return name; }
+    public String getRegion() { return region; }
+    public String getCountry() { return country; }
 }

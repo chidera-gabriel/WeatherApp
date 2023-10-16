@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
                 //
 
                 if(weather != null) {
+                    
+                    Log.i("TESTING", "Date: " + weather.getForecast().getForecastDays()[0].getDate());
+                    Log.i("TESTING", "Max Temp: " + weather.getForecast().getForecastDays()[0].getDay().getMaxTemp());
+                    Log.i("TESTING", "Hour epoch: " + weather.getForecast().getForecastDays()[0].getHours()[0].getEpoch());
 
                     // Update the Location in Activity layout
                     DisplayLocation(weather.getLocation());

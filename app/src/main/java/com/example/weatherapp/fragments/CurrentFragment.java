@@ -62,7 +62,6 @@ public class CurrentFragment extends Fragment {
         return view;
     }
 
-
     private String getFloatRoundedAsString(float num) {
 
         return BigDecimal.valueOf(num).setScale(0, BigDecimal.ROUND_HALF_UP).toString();

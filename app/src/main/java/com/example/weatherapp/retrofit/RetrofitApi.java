@@ -19,5 +19,4 @@ public interface RetrofitApi {
                              @Query("aqi") String aqi,
                              @Query("alerts") String alerts
     );
-
 }

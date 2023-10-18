@@ -23,7 +23,7 @@ public class Day {
     private Condition condition;
 
     public Day(float maxTemp, float minTemp, float maxWind, float humidity, int chanceRain,
-               int amountRain, int chanceSnow, float amountSnow, Condition condition) {
+               float amountRain, int chanceSnow, float amountSnow, Condition condition) {
         this.maxTemp = maxTemp;
         this.minTemp = minTemp;
         this.maxWind = maxWind;

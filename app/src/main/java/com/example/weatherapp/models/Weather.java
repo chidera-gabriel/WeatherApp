@@ -4,7 +4,6 @@ import java.io.Serializable;
 public class Weather implements Serializable {
     private Location location;
     private Current current;
-
     private Forecast forecast;
 
     public Weather(Location location, Current current, Forecast forecast) {

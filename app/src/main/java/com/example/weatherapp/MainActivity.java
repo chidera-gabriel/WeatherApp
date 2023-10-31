@@ -3,6 +3,7 @@ package com.example.weatherapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -51,12 +52,18 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        // Get location from Start Activity Intent
+        Intent intent = getIntent();
+        double latitude = intent.getDoubleExtra("latitude", 0);
+        double longitude = intent.getDoubleExtra("longitude", 0);
+        String currentLocation = latitude + "," + longitude; //"44.6671142,-63.6075769";
+
         NavigationBarView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         //
         // Retrofit client to get weather
         //
-        String currentLocation = "44.6671142,-63.6075769";
+
 
         // Create and initialize the Api client
         Call<Weather> call = RetrofitClient.getInstance().getApi().getWeather(
@@ -77,11 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 //
 
                 if(weather != null) {
-                    
-                    Log.i("TESTING", "Date: " + weather.getForecast().getForecastDays()[0].getDate());
-                    Log.i("TESTING", "Max Temp: " + weather.getForecast().getForecastDays()[0].getDay().getMaxTemp());
-                    Log.i("TESTING", "Hour epoch: " + weather.getForecast().getForecastDays()[0].getHours()[0].getEpoch());
-
                     // Update the Location in Activity layout
                     DisplayLocation(weather.getLocation());
 
@@ -145,14 +147,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void DisplayLocation(Location location) {
         // Display the location
-        String[] locationArray = getResources().getStringArray(R.array.provinces);
-        HashMap<String, String> locationHash = getHashFromStringArray(locationArray);
-        String region = location.getRegion();
-        String abbrev = locationHash.get(region);
+//        String[] locationArray = getResources().getStringArray(R.array.provinces);
+//        HashMap<String, String> locationHash = getHashFromStringArray(locationArray);
+//        String region = location.getRegion();
+//        String abbrev = locationHash.get(region);
 
         //weather.getLocation().getRegion()
         TextView textViewLocation = binding.textViewLocation;
-        String fullLocation = location.getName() + ", " + abbrev;
+        String fullLocation = location.getName();
+        if(location.getRegion() != null) {
+            fullLocation += ", " + location.getRegion();
+        }
+
+        if(location.getCountry() != null) {
+            fullLocation += ", " + location.getCountry();
+        }
+
         textViewLocation.setText(fullLocation);
     }
 
